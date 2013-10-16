@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ChatWindow</class>
+ <widget class="QWidget" name="ChatWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>854</width>
+    <height>612</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Conversation</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QSplitter" name="m_splitter">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <widget class="QWidget" name="">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <layout class="QHBoxLayout" name="m_topButtonLayout">
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="m_addButton">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>&amp;Add</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="m_closeButton">
+           <property name="text">
+            <string>&amp;Close</string>
+           </property>
+           <property name="flat">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QTextBrowser" name="m_textEdit">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="autoFormatting">
+          <set>QTextEdit::AutoAll</set>
+         </property>
+         <property name="tabChangesFocus">
+          <bool>true</bool>
+         </property>
+         <property name="undoRedoEnabled">
+          <bool>true</bool>
+         </property>
+         <property name="openExternalLinks">
+          <bool>false</bool>
+         </property>
+         <property name="openLinks">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="m_bottomButtonLayout">
+         <item>
+          <widget class="QLineEdit" name="m_textInput">
+           <property name="focusPolicy">
+            <enum>Qt::StrongFocus</enum>
+           </property>
+           <property name="accessibleDescription">
+            <string extracomment="Type the text to say, then press ENTER."/>
+           </property>
+           <property name="dragEnabled">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="m_sayItButton">
+           <property name="text">
+            <string>Say It</string>
+           </property>
+           <property name="default">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QTreeWidget" name="m_avList">
+      <property name="contextMenuPolicy">
+       <enum>Qt::ActionsContextMenu</enum>
+      </property>
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
+      <column>
+       <property name="text">
+        <string>Name</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Language</string>
+       </property>
+      </column>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+  <action name="m_actionSendIM">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/mainIcon/chat_icon</normaloff>:/mainIcon/chat_icon</iconset>
+   </property>
+   <property name="text">
+    <string>Send Instant Message</string>
+   </property>
+   <property name="toolTip">
+    <string>Send Instant Message to user.</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+Shift+I</string>
+   </property>
+  </action>
+  <action name="m_actionChangeLanguage">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/mainIcon/user_icon</normaloff>:/mainIcon/user_icon</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Change Language</string>
+   </property>
+   <property name="toolTip">
+    <string>Change the language SLiteChat thinks this user speaks.</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+Shift+C</string>
+   </property>
+  </action>
+ </widget>
+ <tabstops>
+  <tabstop>m_addButton</tabstop>
+  <tabstop>m_closeButton</tabstop>
+  <tabstop>m_textEdit</tabstop>
+  <tabstop>m_textInput</tabstop>
+  <tabstop>m_sayItButton</tabstop>
+ </tabstops>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>m_addButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ChatWindow</receiver>
+   <slot>OnAddButtonClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>440</x>
+     <y>21</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>284</x>
+     <y>283</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_closeButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ChatWindow</receiver>
+   <slot>OnCloseButtonClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>521</x>
+     <y>21</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>284</x>
+     <y>283</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_textInput</sender>
+   <signal>returnPressed()</signal>
+   <receiver>ChatWindow</receiver>
+   <slot>OnTextInputReturnPressed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>242</x>
+     <y>544</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>284</x>
+     <y>283</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_textInput</sender>
+   <signal>textEdited(QString)</signal>
+   <receiver>ChatWindow</receiver>
+   <slot>OnTextInputTextEdited(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>242</x>
+     <y>544</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>284</x>
+     <y>283</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_sayItButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ChatWindow</receiver>
+   <slot>OnTextInputReturnPressed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>520</x>
+     <y>545</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>284</x>
+     <y>283</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_textEdit</sender>
+   <signal>anchorClicked(QUrl)</signal>
+   <receiver>ChatWindow</receiver>
+   <slot>OnAnchorClicked(QUrl)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>284</x>
+     <y>282</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>284</x>
+     <y>283</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_actionSendIM</sender>
+   <signal>triggered()</signal>
+   <receiver>ChatWindow</receiver>
+   <slot>OnSendIM()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>407</x>
+     <y>304</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_actionChangeLanguage</sender>
+   <signal>triggered()</signal>
+   <receiver>ChatWindow</receiver>
+   <slot>OnChangeLanguage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>407</x>
+     <y>304</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_avList</sender>
+   <signal>itemDoubleClicked(QTreeWidgetItem*,int)</signal>
+   <receiver>ChatWindow</receiver>
+   <slot>OnItemDoubleClicked(QTreeWidgetItem*,int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>607</x>
+     <y>303</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>407</x>
+     <y>304</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>OnTextInputReturnPressed()</slot>
+  <slot>OnTextInputTextEdited(QString)</slot>
+  <slot>OnAddButtonClicked()</slot>
+  <slot>OnCloseButtonClicked()</slot>
+  <slot>OnAnchorClicked(QUrl)</slot>
+  <slot>OnSendIM()</slot>
+  <slot>OnChangeLanguage()</slot>
+  <slot>OnItemDoubleClicked(QTreeWidgetItem*,int)</slot>
+ </slots>
+</ui>

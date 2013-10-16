@@ -1,0 +1,58 @@
+# -*- cmake -*-
+
+if( STANDALONE )
+	set( BOOST_STANDALONE TRUE )
+else( STANDALONE )
+	if (WINDOWS)
+		set(BOOST_INCLUDE_DIRS ${LIBS_PREBUILT_DIR}/include/${LL_ARCH_DIR})
+		set(BOOST_VERSION 1_34)
+		set(BOOST_PROGRAM_OPTIONS_LIBRARY 
+			optimized ${ARCH_PREBUILT_DIRS}/libboost_program_options-vc80-mt-s-${BOOST_VERSION}.lib
+			debug ${ARCH_PREBUILT_DIRS}/libboost_program_options-vc80-mt-sgd-${BOOST_VERSION}.lib)
+		set(BOOST_REGEX_LIBRARY
+			optimized ${ARCH_PREBUILT_DIRS}/libboost_regex-vc80-mt-s-${BOOST_VERSION}.lib
+			debug ${ARCH_PREBUILT_DIRS}/libboost_regex-vc80-mt-sgd-${BOOST_VERSION}.lib)
+		set(BOOST_SIGNALS_LIBRARY 
+			optimized ${ARCH_PREBUILT_DIRS}/libboost_signals-vc80-mt-s-${BOOST_VERSION}.lib
+			debug ${ARCH_PREBUILT_DIRS}/libboost_signals-vc80-mt-sgd-${BOOST_VERSION}.lib)
+		set(BOOST_LIBRARIES ${BOOST_PROGRAM_OPTIONS_LIBRARY} ${BOOST_REGEX_LIBRARY} ${BOOST_SIGNALS_LIBRARY})
+	else (WINDOWS)
+		if (CMAKE_CROSSCOMPILING)
+			set(BOOST_INCLUDE_DIRS ${LIBS_PREBUILT_DIR}/include/${LL_ARCH_DIR})
+			set(BOOST_VERSION 1_34)
+			set(BOOST_PROGRAM_OPTIONS_LIBRARY
+				${ARCH_PREBUILT_DIRS}/liblibboost_program_options-gcc42-mt-${BOOST_VERSION}.a
+				)
+			set(BOOST_REGEX_LIBRARY
+				${ARCH_PREBUILT_DIRS}/liblibboost_regex-gcc42-mt-${BOOST_VERSION}.a
+				)
+			set(BOOST_SIGNALS_LIBRARY 
+				${ARCH_PREBUILT_DIRS}/liblibboost_signals-gcc42-mt-${BOOST_VERSION}.a
+				)
+			set(BOOST_LIBRARIES ${BOOST_PROGRAM_OPTIONS_LIBRARY} ${BOOST_REGEX_LIBRARY} ${BOOST_SIGNALS_LIBRARY})
+		else (CMAKE_CROSSCOMPILING)
+			set( BOOST_STANDALONE TRUE )
+		endif (CMAKE_CROSSCOMPILING)
+	endif (WINDOWS)
+endif( STANDALONE )
+
+if( BOOST_STANDALONE )
+	include( FindBoost )
+	set( Boost_USE_STATIC_LIBS ON )
+	set( Boost_USE_MULTITHREAD ON )
+	find_package( Boost 1.34 REQUIRED COMPONENTS program_options regex signals )
+	#
+	set( BOOST_INCLUDE_DIRS				${Boost_INCLUDE_DIRS}				)
+	#
+	set( BOOST_VERSION					${Boost_VERSION}					)
+	set( BOOST_PROGRAM_OPTIONS_LIBRARY	${Boost_PROGRAM_OPTIONS_LIBRARY}	)
+	set( BOOST_REGEX_LIBRARY			${Boost_REGEX_LIBRARY}				)
+	set( BOOST_SIGNALS_LIBRARY			${Boost_SIGNALS_LIBRARY}			)
+	#
+	set( BOOST_LIBRARIES
+		${BOOST_PROGRAM_OPTIONS_LIBRARY}
+		${BOOST_REGEX_LIBRARY}
+		${BOOST_SIGNALS_LIBRARY}
+		)
+endif( BOOST_STANDALONE )
+

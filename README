@@ -1,0 +1,60 @@
+Updated: Tue Oct 20 07:26:58 PDT 2009
+
+Binary:
+
+Go to http://www.slitechat.org/download to get the latest binary build.
+Currently supported is Microsoft Windows XP+ 32 bit, Mac OS/X i386,
+GNU/Linux.
+
+Source:
+
+Go to http://www.slitechat.org/download to obtain the latest version. There is
+a zip file for Windows and a tar.gz for Mac/Linux. Optional: you may also
+download the 3rdParty tarball/zip file if you want to build in "STANDALONE"
+mode.
+
+To build from source, cmake version 2.6 is required. You can get this from
+http://www.cmake.org/ .
+
+For GNU/Linux and Mac OS/X, you will need to fetch the boost 1.34+ (I recommend
+getting the latest version of boost, 1.38) libary (http://www.boost.org) and the
+latest Qt4 distribution (http://www.qtsoftware.com/).  Under Ubuntu, for
+example, you can just install the boost dev packages and the Qt4 dev packages.
+
+Download the SLiteChat tarball and unpack it. If you wish to build link against
+the 3rdParty tarball, then unpack it into a sister directory. Create a BUILD
+folder in your SLiteChat and change directories there. Run the cmake command as
+follows:
+
+For non-standalone mode, do the following:
+
+$ cd slitechat
+$ mkdir BUILD
+$ cd BUILD
+$ cmake -DTHIRDPARTY_DIR:PATH=/home/fred/src/3rdParty ..
+$ make
+$ make install
+
+If you prefer a pleasant GUI experience, may I recommend cmake-gui? This
+presents a list of required and optional switches that the build supports. I
+tried to document them so they make sense, but YMMV. :-)
+
+In order to build standalone, you would turn on the STANDALONE:BOOL switch and
+not bother specifying the 3rdParty folder since it is not needed. For
+standalone mode you will need to make sure you have the following development
+packages installed:
+
+	Apr-1 and Apr-util-1, Boost, CARes, CURL, expat, OpenSSL, Qt4, libsigc++,
+	XmlRpcEPI, and zlib.
+
+For Microsoft Windows using Visual Studio 8, you can generate sln and vcproj
+files using cmake, then build using the IDE. You can also generated nmake
+files, but I have not tested if this builds correctly.
+
+Feedback:
+
+In world: Dooglio Mode
+Email   : doug@dooglio.net
+Website : http://www.slitechat.org/
+
+Some code submitted by Catherine Pfeffer--big thanks!!!!

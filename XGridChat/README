@@ -1,0 +1,208 @@
+XGridChat - Cross-grid group chat bridge
+========================================
+
+This project works in text-only mode. The purpose is to have a robot in
+each grid (Second Life, OSGrid, New World Grid, etc) that forwards group
+chat from one grid to the others. For example, a group named "Fine wines"
+could span over several grids. When someone writes something in Second
+Life's "Fine wines" group, the members of "Fine wines" in the other
+grids will receive that message and be able to answer it.
+
+The different robots communicate with each other through UDP protocol,
+which means that they can even run on different machines. The bridge
+is based on the LLChatLib library, which itself is derived from
+Second Life's viewer official code.
+
+XGridChat currently runs under Linux and Mac OS X. No Microsoft Windows
+version is planned in the immediate future.
+
+
+Warnings
+========
+
+Robots usage is a delicate topic. When you create robots, make sure
+that they conform the rules of the grids they will reside in. Linden
+Lab requires the robots to be declared as "scripted agents" on
+Second Life's web site, and it's a good idea to mention the robots
+to the managers of the other grids.
+
+Each bridge process consumes about 3% CPU. Run them on a machine where
+this loss of performance will be acceptable.
+
+
+Set up
+======
+
+You need to create a robot in each grid. To do that, just create
+a normal account on the grid's web site. Log in at least once
+to set up your robot the way it should be:
+ - move it to a place where it won't bother anyone;
+ - define that place as its home position;
+ - make it susbscribe to the IM group that you plan
+   to forward to the other grids;
+ - activate that group;
+ - propose friendship to your normal avatar on that grid;
+ - get rid of any unnecessary attachement or script.
+
+For each robot, you must create a file in XML format in the following
+directory;
+ - $HOME/.xgridchat/user_settings/ (Linux)
+ - $HOME/Library/Application Support/XGridChat/user_settings (Mac OS X)
+   (make sure you compile XGridChat with CMake option
+    -DDARWIN_DIRECTORY_NAME=XGridChat).
+
+Models of XML files are provided in the XGridChat/examples/ subdirectory
+of the source code tree.
+
+In each XML file, you need to define:
+ - BotOwner:
+     the UUID (the key) of the avatar (on the same grid) that will
+     be allowed to control the robot by sending it commands. To
+     determine that value, use the following LSL script in an object
+     touched by the avatar:
+         state default
+         {
+           touch_start(integer total_number)
+           {
+             llSay(0, (string) llDetectedKey(0));
+           }
+         }
+ - BotGrid:
+     the login URL for that grid. For example, the login URL for Linden
+     Lab's agni grid is https://login.agni.lindenlab.com/cgi-bin/login.cgi.
+ - BotFirst and BotLast:
+     the name of the robot.
+ - BotPassword:
+     the encrypted password for the robot. To determine that value,
+     log in once with SLiteChat, and copy the encrypted value from
+     $HOME/.slitechat/user_settings/settings.xml.
+ - BotLocation:
+     the SLURL of the place where the robot should appear inworld. Use
+     special codes "last" for last location and "home" for home location.
+ - BotGroup:
+     the UUID (the key) of the inworld group that should be forwarded. To
+     determine that value, use the following LSL script in an object
+     set to that group :
+         state default
+         {
+           state_entry()
+           {
+             list a = llGetObjectDetails(llGetKey(), [ OBJECT_GROUP ]);
+             llSay(0, (string) llList2Key(a, 0));
+           }
+         }
+ - BotPrefix:
+     this string will be prepended to all messages forwarded to the other
+     grids. That feature allows to identify the grid they come from. Examples
+     could be "[SL] ", "[Second Life] ", "[Agni] ", "[OSgrid] ", etc.
+ - BotIgnore:
+     this is an important value, because it will prevent infinite recursion
+     between the grids (grids A forwards to grid B which forwards to grid
+     A which in turn forwards to grid B, and so on until the end of
+     times). All messages coming from that origin will be ignored.
+     Put the robot's full name here (the first name, a space and the last name).
+ - ListenAddress:
+     the IP address that the bot should use to listen to for messages coming
+     from other grids. Use 127.0.0.1 (local host IP address) if all your
+     robots reside on the same machine. Don't declare that entry (or use an
+     empty string) if don't want to listen to other grids.
+ - ListenPort:
+     the UDP port that the bot should use to listen to for messages coming
+     from other grids. Use a value greater or equal to 1024 so you don't
+     need to run the robot as a priviledged user. Use a value that is not
+     defined in /etc/services file. Use a free port, the command "netstat
+     -an | grep udp" will show you the used ports. Don't declare that entry
+     (or use 0) if you don't want to listen to other grids.
+ - SendAddress1 to SendAddress4:
+     the IP addresses that the bot should use to forward local messages to
+     the other grids. Use the value that you defined as the ListenAddress
+     for the other robot. Don't declare such entries (or use an empty string)
+     if you don't want to send to another grid.
+ - SendPort1 to SendPort4:
+     the UDP ports that the bot should use to forward local messages to the
+     other grids. Use the value that you defined as the ListenPort for the
+     other robot. Don't declare such entries (or use 0) if you don't want
+     to send to another grid.
+
+Finally, you need to copy two other directories in the same directory
+as the xgridchat executable:
+ - app_settings/
+ - character/
+Both can be taken "as is" from the doc/ directory in the source code tree.
+
+
+Execution
+=========
+
+To start the robot, enter the following command:
+  ./xgridchat robot.xml
+where "robot.xml" is to be replaced by the name of the settings file
+for that robot (located in $HOME/.xgridchat/user_settings/). Repeat the
+operation for each robot, if necessary in a different terminal window
+(if all robots are running on the same computer).
+
+To control the robot, you can send commands in private IM to it.
+There are two commands defined so far:
+ - "Ping":
+     makes every robot answer "Pong", followed by the grid prefix and
+     the software release number. This is useful to check that everything
+     is working.
+- "Quit":
+     makes the robot log out of the grid.
+The commands are case-sensitive.
+
+To stop a robot, either send it the "Quit" command in direct IM, or press
+Ctrl-C in your terminal window. On some grids ruuning older software that don't
+handle properly the logout sequence, it might be necessary to press Ctrl-C
+a second time. Instead of pressing Ctrl-C, you can also send the SIGINT signal.
+If possible, don't kill the process, as it won't give the robot a chance to log out.
+
+
+To-do list and ideas
+====================
+
+Technical:
+
+1- Print error messages on stderr instead of stdout
+2- Port to Windows.
+3- Mac OS X build is buggy:
+   . HAVE_* symbols are not correctly set by CMake
+   . why is -DCMAKE_OSX_DEPLOYMENT_TARGET=10.4 needed when
+     compiling on a 10.5 box?
+   . target executable is "." instead of "xgridchat"
+   . -DCMAKE_DIRECTORY_NAME currently does not work
+
+New functionality:
+
+1- Write new commands like "Tpme" to get teleported next to the robot,
+   "List" to get a list of remotely connected members of a group, etc.
+2- Forward private IMs too (for anyone? or for the bot owner only?)
+3- Allow forwarding of group notices (does llchatlib allow that?)
+3- Setting up the robots is still an heroic operation. Write a nice
+   graphical user interface to make the configuration process easier.
+4- Write a local computer daemon, an IRC group chat daemon, a Google
+   Talk group chat daemon, etc, that would interoperate with the
+   Second Life / OpenSim robots.
+5- Write an opensim module to avoid using robots on those grids
+
+
+Credits and license
+===================
+
+LLChatLib has been written by R. Douglas Barbieri. LLChatLib is derived
+from Linden Lab's Second Life viewer. XGridChat has been
+written by the owner of the avatar named "Catherine Pfeffer".
+
+LLChatLib, SLiteChat, and XGridChat are
+Copyright (C) 2009-2010, R. Douglas Barbieri. The Second Life viewer is
+Copyright (c) 2001-2010, Linden Research, Inc.
+
+LLChatLib, SLiteChat, and XGridChat are brought by R. Douglas
+Barbieri to you under the terms of the GNU General Public License,
+version 2.0 ("GPL"). The Second Life viewer source code is provided by Linden Lab
+to you under the terms of the GNU General Public License, version 2.0
+("GPL"), unless you have obtained a separate licensing agreement
+("Other License"), formally executed by you and Linden Lab.
+
+Terms of the GPL can be found in doc/GPL-license.txt in this distribution,
+or online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt.

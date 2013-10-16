@@ -1,0 +1,7 @@
+// The configured options and settings for SLiteChat!
+// Right now, just version numbers...
+// 
+#define slitechat_VERSION_MAJOR @slitechat_VERSION_MAJOR@
+#define slitechat_VERSION_MINOR @slitechat_VERSION_MINOR@
+#define slitechat_VERSION_PATCH @slitechat_VERSION_PATCH@
+

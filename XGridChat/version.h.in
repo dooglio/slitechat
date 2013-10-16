@@ -1,0 +1,6 @@
+// Version info for xgridchat
+//
+#define xgridchat_VERSION_MAJOR @xgridchat_VERSION_MAJOR@
+#define xgridchat_VERSION_MINOR @xgridchat_VERSION_MINOR@
+#define xgridchat_VERSION_PATCH @xgridchat_VERSION_PATCH@
+

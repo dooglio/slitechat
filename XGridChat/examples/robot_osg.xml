@@ -1,0 +1,106 @@
+<llsd>
+    <map>
+    <key>BotOwner</key>
+        <map>
+        <key>Comment</key> <string>UUID of the avatar owning the bot</string>
+        <key>Type</key> <string>String</string>
+        <key>Value</key> <string>01d4550e-6ada-4dee-ba47-e3fc0ae9c032</string>
+        </map>
+    <key>BotGrid</key>
+        <map>
+        <key>Comment</key> <string>Login URL of the grid</string>
+        <key>Type</key> <string>String</string>
+        <key>Value</key> <string>http://osgrid.org:8002</string>
+        </map>
+    <key>BotFirst</key>
+        <map>
+        <key>Comment</key> <string>First name of the bot</string>
+        <key>Type</key> <string>String</string>
+        <key>Value</key> <string>CetS</string>
+        </map>
+    <key>BotLast</key>
+        <map>
+        <key>Comment</key> <string>Last name of the bot</string>
+        <key>Type</key> <string>String</string>
+        <key>Value</key> <string>Robot</string>
+        </map>
+    <key>BotPassword</key>
+        <map>
+        <key>Comment</key> <string>Munged string for bot password</string>
+        <key>Type</key> <string>String</string>
+        <key>Value</key> <string>ffffffffffffffffffffffffffffffff</string>
+        </map>
+    <key>BotLocation</key>
+        <map>
+        <key>Comment</key> <string>SLURL of initial inworld location of bot</string>
+        <key>Type</key> <string>String</string>
+        <key>Value</key> <string>last</string>
+        </map>
+    <key>BotGroup</key>
+        <map>
+        <key>Comment</key> <string>Inworld chat group that the bot joins</string>
+        <key>Type</key> <string>String</string>
+        <key>Value</key> <string>5602e066-6377-4109-923e-798d14d9a414</string>
+        </map>
+    <key>BotPrefix</key>
+        <map>
+        <key>Comment</key> <string>Text prepended in from of each message</string>
+        <key>Type</key> <string>String</string>
+        <key>Value</key> <string>[OSG] </string>
+        </map>
+    <key>BotIgnore</key>
+        <map>
+        <key>Comment</key> <string>Full name of bot</string>
+        <key>Type</key> <string>String</string>
+        <key>Value</key> <string>CetS Robot</string>
+        </map>
+    <key>ListenAddress</key>
+        <map>
+        <key>Comment</key> <string>Server IP address</string>
+        <key>Type</key> <string>String</string>
+        <key>Value</key> <string>127.0.0.1</string>
+        </map>
+    <key>ListenPort</key>
+        <map>
+        <key>Comment</key> <string>Server UDP port</string>
+        <key>Type</key> <string>U32</string>
+        <key>Value</key> <integer>7779</integer>
+        </map>
+    <key>SendAddress1</key>
+        <map>
+        <key>Comment</key> <string>Client IP address 1</string>
+        <key>Type</key> <string>String</string>
+        <key>Value</key> <string>127.0.0.1</string>
+        </map>
+    <key>SendPort1</key>
+        <map>
+        <key>Comment</key> <string>Client UDP port 1</string>
+        <key>Type</key> <string>U32</string>
+        <key>Value</key> <integer>7777</integer>
+        </map>
+    <key>SendAddress2</key>
+        <map>
+        <key>Comment</key> <string>Client IP address 2</string>
+        <key>Type</key> <string>String</string>
+        <key>Value</key> <string>127.0.0.1</string>
+        </map>
+    <key>SendPort2</key>
+        <map>
+        <key>Comment</key> <string>Client UDP port 2</string>
+        <key>Type</key> <string>U32</string>
+        <key>Value</key> <integer>7778</integer>
+        </map>
+    <key>SendAddress3</key>
+        <map>
+        <key>Comment</key> <string>Client IP address 3</string>
+        <key>Type</key> <string>String</string>
+        <key>Value</key> <string>127.0.0.1</string>
+        </map>
+    <key>SendPort3</key>
+        <map>
+        <key>Comment</key> <string>Client UDP port 3</string>
+        <key>Type</key> <string>U32</string>
+        <key>Value</key> <integer>7780</integer>
+        </map>
+    </map>
+</llsd>

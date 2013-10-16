@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SearchWindow</class>
+ <widget class="QDialog" name="SearchWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>720</width>
+    <height>551</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Search for Friends</string>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>true</bool>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QLineEdit" name="m_keywordEntry"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="m_searchButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>&amp;Search</string>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QListWidget" name="m_searchResults">
+     <property name="showDropIndicator" stdset="0">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="m_addButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>&amp;Add Friend</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="m_sendImButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>&amp;Send IM</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="m_cancelButton">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>m_keywordEntry</tabstop>
+  <tabstop>m_searchButton</tabstop>
+  <tabstop>m_searchResults</tabstop>
+  <tabstop>m_addButton</tabstop>
+  <tabstop>m_sendImButton</tabstop>
+  <tabstop>m_cancelButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>m_searchResults</sender>
+   <signal>itemClicked(QListWidgetItem*)</signal>
+   <receiver>SearchWindow</receiver>
+   <slot>OnSearchResultsItemClicked(QListWidgetItem*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>359</x>
+     <y>275</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_searchResults</sender>
+   <signal>itemDoubleClicked(QListWidgetItem*)</signal>
+   <receiver>SearchWindow</receiver>
+   <slot>OnSearchResultsItemDoubleClicked(QListWidgetItem*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>359</x>
+     <y>275</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_addButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SearchWindow</receiver>
+   <slot>OnAddButtonClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>505</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SearchWindow</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>671</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_searchButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SearchWindow</receiver>
+   <slot>OnSearchButtonClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>671</x>
+     <y>22</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_sendImButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SearchWindow</receiver>
+   <slot>OnSendImButtonClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>588</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_keywordEntry</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>SearchWindow</receiver>
+   <slot>OnKeywordEntryTextChanged(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>318</x>
+     <y>21</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>OnSearchButtonClicked()</slot>
+  <slot>OnAddButtonClicked()</slot>
+  <slot>OnSendImButtonClicked()</slot>
+  <slot>OnKeywordEntryTextChanged(QString)</slot>
+  <slot>OnSearchResultsItemClicked(QListWidgetItem*)</slot>
+  <slot>OnSearchResultsItemDoubleClicked(QListWidgetItem*)</slot>
+ </slots>
+</ui>

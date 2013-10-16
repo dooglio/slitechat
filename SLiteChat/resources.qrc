@@ -1,0 +1,19 @@
+<RCC>
+  <qresource prefix="/mainIcon" >
+    <file alias="alert_icon" >res/webdev-alert-128x128.png</file>
+    <file alias="user_icon" >res/webdev-user-128x128.png</file>
+    <file alias="home_icon" >res/webdev-home-128x128.png</file>
+    <file alias="offline_icon" >res/webdev-cancel-128x128.png</file>
+    <file alias="group_icon" >res/webdev-site-map-128x128.png</file>
+    <file alias="main_icon" >res/webdev-emoticon-smile-128x128.png</file>
+    <file alias="contact_icon" >res/webdev-contact-128x128.png</file>
+    <file alias="sad_icon" >res/webdev-emoticon-sad-128x128.png</file>
+    <file alias="config_icon" >res/webdev-config-128x128.png</file>
+    <file alias="help_icon" >res/webdev-help-128x128.png</file>
+    <file alias="chat_icon" >res/webdev-chat-128x128.png</file>
+    <file alias="add_icon" >res/webdev-add-128x128.png</file>
+    <file alias="remove_icon" >res/webdev-remove-128x128.png</file>
+    <file alias="search_icon" >res/webdev-search-128x128.png</file>
+    <file alias="online_icon" >res/webdev-bullet-128x128.png</file>
+  </qresource>
+</RCC>
