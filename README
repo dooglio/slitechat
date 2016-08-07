@@ -1,19 +1,6 @@
-Updated: Tue Oct 20 07:26:58 PDT 2009
+Updated: Sun Aug  7 08:53:52 PDT 2016
 
-Binary:
-
-Go to http://www.slitechat.org/download to get the latest binary build.
-Currently supported is Microsoft Windows XP+ 32 bit, Mac OS/X i386,
-GNU/Linux.
-
-Source:
-
-Go to http://www.slitechat.org/download to obtain the latest version. There is
-a zip file for Windows and a tar.gz for Mac/Linux. Optional: you may also
-download the 3rdParty tarball/zip file if you want to build in "STANDALONE"
-mode.
-
-To build from source, cmake version 2.6 is required. You can get this from
+To build from source, cmake version 2.6+ is required. You can get this from
 http://www.cmake.org/ .
 
 For GNU/Linux and Mac OS/X, you will need to fetch the boost 1.34+ (I recommend
